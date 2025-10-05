@@ -1,0 +1,77 @@
+/* 1) Base typography: scalable + readable */
+:root {
+    /* fluid type: min 16px → max 18px depending on viewport */
+    font-size: clamp(16px, 1.2vw + 12px, 18px);
+  }
+  body {
+    font: 100%/1.6 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* center content on large screens */
+    display: grid;
+    place-items: start center;
+  }
+  
+  /* 2) A comfortable content width with side padding */
+  body > * {
+    width: min(100%, 72rem);     /* max ~1152px */
+    padding-inline: clamp(1rem, 4vw, 2rem);
+    box-sizing: border-box;
+  }
+  
+  /* 3) Fluid headings */
+  h1 { font-size: clamp(1.75rem, 2.5vw + 1rem, 3rem); }
+  h2 { font-size: clamp(1.25rem, 1.5vw + 0.9rem, 2rem); }
+  
+  /* 4) Make images scale down but keep aspect ratio */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* 5) Responsive nav: row on desktop, stack on mobile */
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    align-items: center;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  nav a {
+    text-decoration: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.5rem;
+  }
+  nav a:hover, nav a:focus {
+    background: #f3f3f3;
+    outline: none;
+  }
+  
+  /* 6) Spacing for page content */
+  h1, p, form, section, article {
+    margin-block: 1rem;
+  }
+  
+  /* 7) Tweak layout at common breakpoints */
+  @media (max-width: 768px) {
+    nav {
+      gap: 0.5rem 0.75rem;
+    }
+    /* slightly larger body line-height on smaller screens */
+    body { line-height: 1.7; }
+  }
+  
+  @media (max-width: 480px) {
+    /* stack nav links more comfortably */
+    nav {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    nav a {
+      padding: 0.55rem 0.7rem;
+    }
+  }
+  
+
