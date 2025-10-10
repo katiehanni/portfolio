@@ -2,6 +2,11 @@
 :root {
     /* fluid type: min 16px → max 18px depending on viewport */
     font-size: clamp(16px, 1.2vw + 12px, 18px);
+    /* accent color for the website */
+    --color-accent: #ff69b4;
+  }
+  html {
+    accent-color: var(--color-accent);
   }
   body {
     font: 100%/1.6 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -19,9 +24,23 @@
     box-sizing: border-box;
   }
   
+  /* Navigation takes full width and centers content */
+  nav {
+    width: 100%;
+    padding-inline: 0;
+  }
+  
   /* 3) Fluid headings */
-  h1 { font-size: clamp(1.75rem, 2.5vw + 1rem, 3rem); }
-  h2 { font-size: clamp(1.25rem, 1.5vw + 0.9rem, 2rem); }
+  h1 { 
+    font-size: clamp(2.5rem, 4vw + 1.5rem, 4rem); /* 400% of body text */
+  }
+  h2 { 
+    font-size: clamp(1.25rem, 1.5vw + 0.9rem, 2rem); 
+  }
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+    text-wrap: balance;
+  }
   
   /* 4) Make images scale down but keep aspect ratio */
   img {
@@ -30,22 +49,31 @@
     display: block;
   }
   
-  /* 5) Responsive nav: row on desktop, stack on mobile */
+  /* 5) Navigation bar styling */
   nav {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem 1rem;
-    align-items: center;
-    padding-block: 0.75rem;
-    border-bottom: 1px solid #e5e5e5;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
   }
   nav a {
+    flex: 1;
     text-decoration: none;
-    padding: 0.4rem 0.6rem;
-    border-radius: 0.5rem;
+    color: inherit;
+    text-align: center;
+    padding: 0.5em;
+  }
+  nav a.current {
+    border-bottom: 0.4em solid #ccc;
+    padding-bottom: calc(0.5em - 0.4em);
   }
   nav a:hover, nav a:focus {
-    background: #f3f3f3;
+    border-bottom: 0.4em solid var(--color-accent);
+    padding-bottom: calc(0.5em - 0.4em);
+    background-color: #ffb6c1;
     outline: none;
   }
   
@@ -54,11 +82,49 @@
     margin-block: 1rem;
   }
   
+  /* 7) Form styling */
+  input, textarea, button {
+    font: inherit;
+  }
+  
+  /* Step 3.3: Grid layout */
+  form {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5em;
+  }
+  label, button {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+  }
+  input, textarea {
+    box-sizing: border-box;
+  }
+  
+  /* 8) Projects grid layout */
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    gap: 1em;
+  }
+  .projects article {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+  }
+  .projects h2 {
+    margin: 0;
+  }
+  .projects img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+  }
+  
   /* 7) Tweak layout at common breakpoints */
   @media (max-width: 768px) {
-    nav {
-      gap: 0.5rem 0.75rem;
-    }
     /* slightly larger body line-height on smaller screens */
     body { line-height: 1.7; }
   }
@@ -67,7 +133,6 @@
     /* stack nav links more comfortably */
     nav {
       flex-direction: column;
-      align-items: stretch;
     }
     nav a {
       padding: 0.55rem 0.7rem;
