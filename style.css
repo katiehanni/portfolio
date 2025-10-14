@@ -5,6 +5,13 @@
     /* accent color for the website */
     --color-accent: #ff69b4;
   }
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-accent: #ff8c42;
+  }
+}
   html {
     accent-color: var(--color-accent);
   }
@@ -138,5 +145,13 @@
       padding: 0.55rem 0.7rem;
     }
   }
-  
+
+/* Color scheme switcher */
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 80%;
+  font-family: inherit;
+}
 
