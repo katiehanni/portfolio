@@ -5,11 +5,16 @@ function $$(selector, context = document) {
 }
 
 // Step 3: Automatic navigation menu
+// Determine the correct path prefix based on current location
+const currentPath = window.location.pathname;
+const isInSubdirectory = currentPath.includes('/projects/') || currentPath.includes('/contact/') || currentPath.includes('/cv/');
+const pathPrefix = isInSubdirectory ? "../" : "";
+
 const navData = [
-  { url: "/portfolio/", text: "Home" },
-  { url: "/portfolio/projects/", text: "Projects" },
-  { url: "/portfolio/contact/", text: "Contact" },
-  { url: "/portfolio/cv/", text: "Resume" },
+  { url: `${pathPrefix}index.html`, text: "Home" },
+  { url: `${pathPrefix}projects/index.html`, text: "Projects" },
+  { url: `${pathPrefix}contact/index.html`, text: "Contact" },
+  { url: `${pathPrefix}cv/index.html`, text: "Resume" },
   { url: "https://github.com/kathehann", text: "GitHub", external: true }
 ];
 

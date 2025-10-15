@@ -3,13 +3,13 @@
     /* fluid type: min 16px → max 18px depending on viewport */
     font-size: clamp(16px, 1.2vw + 12px, 18px);
     /* accent color for the website */
-    --color-accent: #ff69b4;
+    --color-accent: #a8e6cf;
   }
 
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-accent: #ff8c42;
+    --color-accent: #7dd3a0;
   }
 }
   html {
@@ -67,20 +67,21 @@
     margin-right: auto;
   }
   nav a {
-    flex: 1;
     text-decoration: none;
     color: inherit;
     text-align: center;
-    padding: 0.5em;
+    padding: 0.5em 1em;
+    margin: 0 0.2em;
   }
   nav a.current {
     border-bottom: 0.4em solid #ccc;
     padding-bottom: calc(0.5em - 0.4em);
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
   }
   nav a:hover, nav a:focus {
     border-bottom: 0.4em solid var(--color-accent);
     padding-bottom: calc(0.5em - 0.4em);
-    background-color: #ffb6c1;
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
     outline: none;
   }
   
@@ -148,10 +149,27 @@
 
 /* Color scheme switcher */
 .color-scheme {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  position: fixed !important;
+  top: 10px !important;
+  right: 10px !important;
+  left: auto !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
   font-size: 80%;
   font-family: inherit;
+  display: flex !important;
+  align-items: center;
+  gap: 0.5em;
+  z-index: 1000;
+  transform: translateX(0) !important;
+}
+
+.color-scheme select {
+  padding: 0.25em 0.5em;
+  font-size: 0.9em;
+  min-width: auto;
+  width: 80px;
+  max-width: 80px;
 }
 
