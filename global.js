@@ -90,15 +90,13 @@ if (select) {
     localStorage.colorScheme = event.target.value;
   });
 
-  // Load saved preference
-  if ("colorScheme" in localStorage) {
-    document.documentElement.setAttribute('data-color-scheme', localStorage.colorScheme);
-    select.value = localStorage.colorScheme;
-  } else {
-    // Set default to light mode
-    document.documentElement.setAttribute('data-color-scheme', 'light');
-    select.value = 'light';
-  }
+  // Force light mode and clear any cached theme
+  localStorage.clear();
+  document.documentElement.setAttribute('data-color-scheme', 'light');
+  select.value = 'light';
+  // Force remove any inline styles that might be overriding
+  document.documentElement.style.removeProperty('color-scheme');
+  document.body.style.removeProperty('background-color');
 }
 
 // Step 5: Better contact form

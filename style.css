@@ -22,52 +22,52 @@
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   }
 
-/* Light mode styles - Muted Green theme */
+/* Light mode styles - Regular Colors */
 :root,
 [data-color-scheme="light"] {
-  --color-primary: #16a34a;
-  --color-primary-light: #22c55e;
-  --color-secondary: #4ade80;
-  --color-accent: #16a34a;
-  --color-text: #1a2e1a;
-  --color-text-light: #4a7c59;
-  --color-bg: #f0f9f0; /* Light green background */
-  --color-bg-soft: #e6f7e6; /* Slightly darker green for sections */
-  --color-bg-card: #f8faf8; /* Very subtle darker for individual cards */
-  --color-border: #c7e2c7;
-  --color-border-light: #e0f0e0;
+  --color-primary: #2563eb;
+  --color-primary-light: #3b82f6;
+  --color-secondary: #64748b;
+  --color-accent: #2563eb;
+  --color-text: #1f2937;
+  --color-text-light: #6b7280;
+  --color-bg: #ffffff;
+  --color-bg-soft: #f8fafc;
+  --color-bg-card: #ffffff;
+  --color-border: #e2e8f0;
+  --color-border-light: #f1f5f9;
 }
 
-/* Dark mode styles - Very Subtle Green theme */
+/* Dark mode styles - Regular Colors */
 @media (prefers-color-scheme: dark) {
   :root:not([data-color-scheme="light"]) {
-    --color-primary: #7dd3a0;
-    --color-primary-light: #9dd9b3;
-    --color-secondary: #b5d9c5;
-    --color-accent: #7dd3a0;
-    --color-text: #f8faf9;
-    --color-text-light: #e2e8e5;
-    --color-bg: #0f1410;
-    --color-bg-soft: #1a1f1a;
-    --color-bg-card: #1f241f;
-    --color-border: #2a2f2a;
-    --color-border-light: #3a3f3a;
+    --color-primary: #3b82f6;
+    --color-primary-light: #60a5fa;
+    --color-secondary: #94a3b8;
+    --color-accent: #3b82f6;
+    --color-text: #f1f5f9;
+    --color-text-light: #94a3b8;
+    --color-bg: #0f172a;
+    --color-bg-soft: #1e293b;
+    --color-bg-card: #334155;
+    --color-border: #334155;
+    --color-border-light: #475569;
   }
 }
 
-/* Manual dark mode override - Very Subtle Green theme */
+/* Manual dark mode override - Regular Colors */
 [data-color-scheme="dark"] {
-  --color-primary: #7dd3a0;
-  --color-primary-light: #9dd9b3;
-  --color-secondary: #b5d9c5;
-  --color-accent: #7dd3a0;
-  --color-text: #f8faf9;
-  --color-text-light: #e2e8e5;
-  --color-bg: #0f1410;
-  --color-bg-soft: #1a1f1a;
-  --color-bg-card: #1f241f;
-  --color-border: #2a2f2a;
-  --color-border-light: #3a3f3a;
+  --color-primary: #3b82f6;
+  --color-primary-light: #60a5fa;
+  --color-secondary: #94a3b8;
+  --color-accent: #3b82f6;
+  --color-text: #f1f5f9;
+  --color-text-light: #94a3b8;
+  --color-bg: #0f172a;
+  --color-bg-soft: #1e293b;
+  --color-bg-card: #334155;
+  --color-border: #334155;
+  --color-border-light: #475569;
 }
 
 html {
@@ -88,6 +88,55 @@ body {
   display: grid;
   place-items: start center;
   min-height: 100vh;
+}
+
+/* Force white background on main elements - light mode only */
+:root:not([data-color-scheme="dark"]),
+[data-color-scheme="light"] {
+  html, body, main, section, div, article, header, footer {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+  }
+
+  /* Override any potential green backgrounds - but preserve text colors */
+  html, body, main, section, div, article, header, footer, nav, .hero, .stats, .latest-projects, .github-stats, .contact-section, .resume-section, .project-card, .stat-item {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+  }
+
+  /* Specific overrides for common elements */
+  .hero, .stats, .latest-projects, .github-stats, .contact-section, .resume-section {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+  }
+}
+
+/* Ensure text is visible */
+h1, h2, h3, h4, h5, h6, p, a, span, div, li, td, th {
+  color: var(--color-text) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text) !important;
+}
+
+/* Make button text white for primary buttons and contact links */
+.btn-primary, .contact-links a {
+  color: white !important;
+}
+
+/* Ensure primary button hover state keeps white text - override all conflicting rules */
+.btn-primary:hover, .btn.btn-primary:hover, a.btn.btn-primary:hover {
+  color: white !important;
+  background: var(--color-primary-light) !important;
+  border-color: var(--color-primary-light) !important;
+}
+
+/* Ensure secondary buttons have proper contrast */
+.btn-secondary {
+  color: var(--color-primary) !important;
+  background: transparent !important;
+  border-color: var(--color-primary) !important;
 }
   
 /* Content width and spacing */
@@ -169,12 +218,12 @@ nav a {
 
 nav a.current {
   color: var(--color-primary);
-  background-color: var(--color-bg-soft);
+  background-color: transparent;
 }
 
 nav a:hover, nav a:focus {
   color: var(--color-primary);
-  background-color: var(--color-bg-soft);
+  background-color: transparent;
   outline: none;
 }
 
@@ -188,8 +237,8 @@ p {
 /* Modern Hero Section */
 .hero {
   padding: var(--spacing-xl) 0;
-  background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-soft) 100%);
-  border-radius: var(--radius-lg);
+  background: transparent;
+  border-radius: 0;
   margin: var(--spacing-sm) 0;
 }
 
@@ -299,17 +348,17 @@ section {
   gap: var(--spacing-lg);
   margin: var(--spacing-sm) 0;
   padding: var(--spacing-lg);
-  background: var(--color-bg-soft);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-light);
+  background: transparent;
+  border-radius: 0;
+  border: none;
 }
 
 .stat-item {
   text-align: center;
   padding: var(--spacing-lg);
-  background: var(--color-bg);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border-light);
+  background: transparent;
+  border-radius: 0;
+  border: none;
   transition: all 0.2s ease;
 }
 
@@ -336,9 +385,9 @@ section {
 .latest-projects {
   margin: var(--spacing-xl) 0;
   padding: var(--spacing-lg);
-  background: var(--color-bg-soft);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-light);
+  background: transparent;
+  border-radius: 0;
+  border: none;
 }
 
 .latest-projects h2 {
@@ -354,10 +403,10 @@ section {
 }
 
 .project-card {
-  background: var(--color-bg);
-  border-radius: var(--radius-lg);
+  background: transparent;
+  border-radius: 0;
   overflow: hidden;
-  border: 1px solid var(--color-border-light);
+  border: none;
   transition: all 0.2s ease;
 }
 
@@ -500,9 +549,9 @@ form {
 .github-stats {
   margin: var(--spacing-xl) 0;
   padding: var(--spacing-lg);
-  background: var(--color-bg-soft);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-light);
+  background: transparent;
+  border-radius: 0;
+  border: none;
 }
 
 .github-stats h2 {
@@ -573,7 +622,7 @@ form {
 /* Dark mode hero background */
 @media (prefers-color-scheme: dark) {
   .hero {
-    background: linear-gradient(135deg, rgba(125, 211, 160, 0.15) 0%, rgba(168, 230, 207, 0.08) 100%);
+    background: transparent;
   }
 }
 
@@ -591,7 +640,7 @@ form {
 .hero-text h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--color-bg-card), var(--color-bg-soft));
+  background: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -703,14 +752,14 @@ form {
 /* Dark mode stats background */
 @media (prefers-color-scheme: dark) {
   .stats {
-    background: rgba(125, 211, 160, 0.08);
+    background: transparent;
   }
 }
 
 .stat-item {
   text-align: center;
   padding: 1.5rem;
-  background: var(--color-bg-card);
+  background: transparent;
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease;
@@ -719,7 +768,7 @@ form {
 /* Dark mode stat items */
 @media (prefers-color-scheme: dark) {
   .stat-item {
-    background: var(--color-bg-card);
+    background: transparent;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   }
 }
@@ -798,7 +847,7 @@ form {
 .page-header h1 {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, var(--color-bg-card), var(--color-bg-soft));
+  background: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -839,7 +888,7 @@ form {
 }
 
 .project-card {
-  background: var(--color-bg-card);
+  background: transparent;
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -928,7 +977,7 @@ form {
 /* Dark mode project cards */
 @media (prefers-color-scheme: dark) {
   .project-card {
-    background: var(--color-bg-card);
+    background: transparent;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
   
@@ -946,9 +995,9 @@ form {
   max-width: 600px;
   margin: 0 auto;
   padding: 2rem;
-  background: var(--color-bg-card);
-  border-radius: 1rem;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .contact-links {
@@ -1002,7 +1051,7 @@ form {
   border-radius: 0.5rem;
   font-size: 1rem;
   transition: border-color 0.3s ease;
-  background: var(--color-bg-card);
+  background: transparent;
 }
 
 .form-group input:focus,
@@ -1020,7 +1069,7 @@ form {
 /* Dark mode contact form */
 @media (prefers-color-scheme: dark) {
   .contact-section {
-    background: var(--color-bg-card);
+    background: transparent;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
   
@@ -1030,7 +1079,7 @@ form {
   
   .form-group input,
   .form-group textarea {
-    background: var(--color-bg-soft);
+    background: transparent;
     border-color: var(--color-border);
     color: var(--color-text);
   }
@@ -1046,7 +1095,7 @@ form {
 .resume-section {
   margin: 2rem 0;
   padding: 2rem;
-  background: var(--color-bg-card);
+  background: transparent;
   border-radius: 1rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
@@ -1105,7 +1154,7 @@ form {
 /* Dark mode resume sections */
 @media (prefers-color-scheme: dark) {
   .resume-section {
-    background: var(--color-bg-card);
+    background: transparent;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
   
@@ -1134,7 +1183,7 @@ form {
 .latest-projects {
   margin: 3rem 0;
   padding: 2rem;
-  background: rgba(168, 230, 207, 0.05);
+  background: transparent;
   border-radius: 1rem;
 }
 
@@ -1148,7 +1197,7 @@ form {
 .github-stats {
   margin: 3rem 0;
   padding: 2rem;
-  background: var(--color-bg-card);
+  background: transparent;
   border-radius: 1rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
@@ -1182,12 +1231,12 @@ form {
 /* Dark mode for new sections */
 @media (prefers-color-scheme: dark) {
   .latest-projects {
-    background: rgba(125, 211, 160, 0.08);
+    background: transparent;
   }
   
   .github-stats {
-    background: var(--color-bg-card);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: transparent;
+    box-shadow: none;
   }
   
   #profile-stats dt {
