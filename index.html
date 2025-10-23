@@ -7,6 +7,7 @@
         <!-- <base href="https://kathehann.github.io/portfolio/"> -->
         <link rel="stylesheet" href="style.css?v=20" />
         <script type="module" src="global.js"></script>
+        <script type="module" src="index.js" defer></script>
       </head>
 <body>
   <nav id="nav"></nav>
@@ -19,9 +20,54 @@
     </select>
   </label>
 
-  <h1>Katie Hannigan</h1>
-  <p>Data Science student at UC San Diego with experience in machine learning, data engineering, and applied research. Passionate about building data-driven solutions that bridge technology, business, and human performance.</p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Katie Hannigan</h1>
+        <h2>Data Scientist & Aspiring TPM</h2>
+        <p class="hero-description">Data Science student at UC San Diego with expertise in machine learning, statistical modeling, and cross-functional leadership. Passionate about building scalable ML pipelines, implementing advanced algorithms, and bridging technical solutions with product strategy to drive measurable business impact.</p>
+        <div class="hero-actions">
+          <a href="projects/index.html" class="btn btn-primary">View My Work</a>
+          <a href="contact/index.html" class="btn btn-secondary">Get In Touch</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="/portfolio/images/FBE45A6F-BA94-403E-80C0-A9F4429C2562_1_105_c.jpeg" alt="Portrait of Katie Hannigan smiling" />
+      </div>
+    </div>
+  </section>
 
-  <img src="/portfolio/images/IMG_3086.JPG" alt="Portrait of Katie Hannigan smiling" width="300" />
+  <!-- Quick Stats Section -->
+  <section class="stats">
+    <div class="stat-item">
+      <h3>Machine Learning</h3>
+      <p>ML Pipelines & Algorithms</p>
+    </div>
+    <div class="stat-item">
+      <h3>Technical Leadership</h3>
+      <p>Cross-functional Teams</p>
+    </div>
+    <div class="stat-item">
+      <h3>Data Engineering</h3>
+      <p>Scalable Systems</p>
+    </div>
+  </section>
+
+  <!-- Latest Projects Section -->
+  <section class="latest-projects">
+    <h2>Latest Projects</h2>
+    <div class="projects">
+      <!-- Projects will be dynamically loaded here -->
+    </div>
+  </section>
+
+  <!-- GitHub Stats Section -->
+  <section class="github-stats">
+    <h2>GitHub Profile</h2>
+    <div id="profile-stats">
+      <!-- GitHub data will be loaded here -->
+    </div>
+  </section>
 </body>
 </html>

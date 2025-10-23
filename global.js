@@ -4,6 +4,46 @@ function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
+// Lab 4: Modular JavaScript Functions
+export async function fetchJSON(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+  }
+}
+
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  containerElement.innerHTML = '';
+  
+  projects.forEach(project => {
+    const article = document.createElement('article');
+    article.className = 'project-card';
+    
+    article.innerHTML = `
+      <div class="project-image">
+        <img src="${project.image}" alt="${project.title}">
+      </div>
+      <div class="project-content">
+        <${headingLevel}>${project.title}</${headingLevel}>
+        <p>${project.description}</p>
+        <a href="#" class="project-link">View Project →</a>
+      </div>
+    `;
+    
+    containerElement.appendChild(article);
+  });
+}
+
+export async function fetchGitHubData(username) {
+  return fetchJSON(`https://api.github.com/users/${username}`);
+}
+
 // Step 3: Automatic navigation menu
 // Determine the correct path prefix based on current location
 const currentPath = window.location.pathname;
@@ -15,7 +55,8 @@ const navData = [
   { url: `${pathPrefix}projects/index.html`, text: "Projects" },
   { url: `${pathPrefix}contact/index.html`, text: "Contact" },
   { url: `${pathPrefix}cv/index.html`, text: "Resume" },
-  { url: "https://github.com/kathehann", text: "GitHub", external: true }
+  { url: "https://github.com/kathehann", text: "GitHub", external: true },
+  { url: "https://www.linkedin.com/in/katie-hannigan-423134238", text: "LinkedIn", external: true }
 ];
 
 const nav = document.querySelector('#nav');
@@ -47,6 +88,11 @@ if (select) {
     console.log('color scheme changed to', event.target.value);
     document.documentElement.style.setProperty('color-scheme', event.target.value);
     localStorage.colorScheme = event.target.value;
+    
+    // Force a repaint to ensure all elements update
+    document.body.style.display = 'none';
+    document.body.offsetHeight; // Trigger reflow
+    document.body.style.display = '';
   });
 
   // Load saved preference

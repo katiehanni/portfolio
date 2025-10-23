@@ -19,29 +19,41 @@
     </select>
   </label>
 
-  <h1>Contact</h1>
-  <p>Have a question or want to connect? Fill out the form below, and your email client will open with the message pre-filled.</p>
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1>Contact</h1>
+    <p class="page-description">Interested in technical collaboration, research opportunities, or discussing ML/DS projects? Let's connect and explore how we can work together on cutting-edge data science solutions.</p>
+  </section>
 
-  <form action="mailto:khannigan@ucsd.edu">
-    <label>
-      Your email:
-      <input name="email" type="email" value="test@example.com">
-    </label>
-    <br><br>
+  <!-- Contact Form Section -->
+  <section class="contact-section">
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/katie-hannigan-423134238" target="_blank" class="contact-link">
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://github.com/kathehann" target="_blank" class="contact-link">
+        <span>GitHub</span>
+      </a>
+    </div>
+    
+    <form action="mailto:khannigan@ucsd.edu" class="contact-form">
+      <div class="form-group">
+        <label for="email">Your email:</label>
+        <input id="email" name="email" type="email" value="test@example.com" required>
+      </div>
 
-    <label>
-      Subject:
-      <input name="subject" value="Hello Katie!">
-    </label>
-    <br><br>
+      <div class="form-group">
+        <label for="subject">Subject:</label>
+        <input id="subject" name="subject" value="Hello Katie!" required>
+      </div>
 
-    <label>
-      Message:
-      <textarea name="body" rows="5" cols="40">Just wanted to reach out about...</textarea>
-    </label>
-    <br><br>
+      <div class="form-group">
+        <label for="body">Message:</label>
+        <textarea id="body" name="body" rows="5" required>Just wanted to reach out about...</textarea>
+      </div>
 
-    <button>Send</button>
-  </form>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+  </section>
 </body>
 </html>
