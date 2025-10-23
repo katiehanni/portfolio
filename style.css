@@ -22,13 +22,13 @@
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   }
 
-/* Light mode styles - Green theme */
+/* Light mode styles - Muted Green theme */
 :root,
 [data-color-scheme="light"] {
-  --color-primary: #22c55e;
-  --color-primary-light: #4ade80;
-  --color-secondary: #86efac;
-  --color-accent: #22c55e;
+  --color-primary: #16a34a;
+  --color-primary-light: #22c55e;
+  --color-secondary: #4ade80;
+  --color-accent: #16a34a;
   --color-text: #1a2e1a;
   --color-text-light: #4a7c59;
   --color-bg: #f0f9f0; /* Light green background */
@@ -92,8 +92,8 @@ body {
   
 /* Content width and spacing */
 body > * {
-  width: min(100%, 65rem);     /* max ~1040px for better readability */
-  padding-inline: clamp(var(--spacing-sm), 4vw, var(--spacing-lg));
+  width: 100%;     /* Full width */
+  padding-inline: clamp(var(--spacing-sm), 3vw, var(--spacing-lg));
   box-sizing: border-box;
 }
 
@@ -107,6 +107,8 @@ nav {
   top: 0;
   z-index: 50;
   backdrop-filter: blur(8px);
+  max-width: 90rem;
+  margin: 0 auto;
 }
   
 /* Modern Typography */
@@ -152,8 +154,6 @@ nav {
   justify-content: center;
   align-items: center;
   padding: var(--spacing-sm) 0;
-  max-width: 65rem;
-  margin: 0 auto;
 }
 
 nav a {
@@ -187,10 +187,10 @@ p {
   
 /* Modern Hero Section */
 .hero {
-  padding: var(--spacing-2xl) 0;
+  padding: var(--spacing-xl) 0;
   background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-soft) 100%);
   border-radius: var(--radius-lg);
-  margin: var(--spacing-lg) 0;
+  margin: var(--spacing-sm) 0;
 }
 
 .hero-content {
@@ -198,7 +198,7 @@ p {
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-xl);
   align-items: center;
-  max-width: 65rem;
+  max-width: 90rem;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
 }
@@ -289,7 +289,7 @@ p {
 
 /* Content spacing */
 section {
-  margin: var(--spacing-xl) 0;
+  margin: 0;
 }
   
 /* Modern Stats Section */
@@ -297,7 +297,7 @@ section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--spacing-lg);
-  margin: var(--spacing-xl) 0;
+  margin: var(--spacing-sm) 0;
   padding: var(--spacing-lg);
   background: var(--color-bg-soft);
   border-radius: var(--radius-lg);
