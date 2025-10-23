@@ -86,19 +86,18 @@ const select = document.querySelector('.color-scheme select');
 if (select) {
   select.addEventListener('input', function (event) {
     console.log('color scheme changed to', event.target.value);
-    document.documentElement.style.setProperty('color-scheme', event.target.value);
+    document.documentElement.setAttribute('data-color-scheme', event.target.value);
     localStorage.colorScheme = event.target.value;
-    
-    // Force a repaint to ensure all elements update
-    document.body.style.display = 'none';
-    document.body.offsetHeight; // Trigger reflow
-    document.body.style.display = '';
   });
 
   // Load saved preference
   if ("colorScheme" in localStorage) {
-    document.documentElement.style.setProperty('color-scheme', localStorage.colorScheme);
+    document.documentElement.setAttribute('data-color-scheme', localStorage.colorScheme);
     select.value = localStorage.colorScheme;
+  } else {
+    // Set default to light mode
+    document.documentElement.setAttribute('data-color-scheme', 'light');
+    select.value = 'light';
   }
 }
 
