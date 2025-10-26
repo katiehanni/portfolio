@@ -22,13 +22,13 @@
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   }
 
-/* Light mode styles - Regular Colors */
+/* Light mode styles - Green Theme */
 :root,
 [data-color-scheme="light"] {
-  --color-primary: #2563eb;
-  --color-primary-light: #3b82f6;
+  --color-primary: #059669;
+  --color-primary-light: #10b981;
   --color-secondary: #64748b;
-  --color-accent: #2563eb;
+  --color-accent: #059669;
   --color-text: #1f2937;
   --color-text-light: #6b7280;
   --color-bg: #ffffff;
@@ -38,36 +38,36 @@
   --color-border-light: #f1f5f9;
 }
 
-/* Dark mode styles - Regular Colors */
+/* Dark mode styles - Green Theme */
 @media (prefers-color-scheme: dark) {
   :root:not([data-color-scheme="light"]) {
-    --color-primary: #3b82f6;
-    --color-primary-light: #60a5fa;
+    --color-primary: #10b981;
+    --color-primary-light: #34d399;
     --color-secondary: #94a3b8;
-    --color-accent: #3b82f6;
+    --color-accent: #10b981;
     --color-text: #f1f5f9;
     --color-text-light: #94a3b8;
-    --color-bg: #0f172a;
-    --color-bg-soft: #1e293b;
-    --color-bg-card: #334155;
-    --color-border: #334155;
-    --color-border-light: #475569;
+    --color-bg: #1a1a1a;
+    --color-bg-soft: #2a2a2a;
+    --color-bg-card: #3a3a3a;
+    --color-border: #404040;
+    --color-border-light: #505050;
   }
 }
 
-/* Manual dark mode override - Regular Colors */
+/* Manual dark mode override - Green Theme */
 [data-color-scheme="dark"] {
-  --color-primary: #3b82f6;
-  --color-primary-light: #60a5fa;
+  --color-primary: #10b981;
+  --color-primary-light: #34d399;
   --color-secondary: #94a3b8;
-  --color-accent: #3b82f6;
+  --color-accent: #10b981;
   --color-text: #f1f5f9;
   --color-text-light: #94a3b8;
-  --color-bg: #0f172a;
-  --color-bg-soft: #1e293b;
-  --color-bg-card: #334155;
-  --color-border: #334155;
-  --color-border-light: #475569;
+  --color-bg: #1a1a1a;
+  --color-bg-soft: #2a2a2a;
+  --color-bg-card: #3a3a3a;
+  --color-border: #404040;
+  --color-border-light: #505050;
 }
 
 html {
@@ -217,14 +217,47 @@ nav a {
 }
 
 nav a.current {
-  color: var(--color-primary);
+  color: #10b981;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(16, 185, 129, 0.1) 50%, 
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: navShimmer 3s ease-in-out infinite;
   background-color: transparent;
 }
 
+@keyframes navShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 nav a:hover, nav a:focus {
-  color: var(--color-primary);
-  background-color: transparent;
+  color: #10b981;
+  background-color: rgba(16, 185, 129, 0.1);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  animation: navPulse 2s ease-in-out infinite;
   outline: none;
+}
+
+@keyframes navPulse {
+  0% {
+    box-shadow: 0 0 5px rgba(16, 185, 129, 0.2);
+    background-color: rgba(16, 185, 129, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
+    background-color: rgba(16, 185, 129, 0.15);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(16, 185, 129, 0.2);
+    background-color: rgba(16, 185, 129, 0.05);
+  }
 }
 
 /* Paragraph styling */
@@ -263,7 +296,7 @@ p {
 .hero-text h2 {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 500;
-  color: var(--color-text-light);
+  color: #10b981 !important;
   margin-bottom: var(--spacing-md);
 }
 
@@ -393,7 +426,23 @@ section {
 .latest-projects h2 {
   text-align: center;
   margin-bottom: var(--spacing-lg);
-  color: var(--color-text);
+  background: linear-gradient(135deg, 
+    #059669,  /* emerald-600 */
+    #10b981,  /* emerald-500 */
+    #34d399,  /* emerald-400 */
+    #6ee7b7,  /* emerald-300 */
+    #a7f3d0,  /* emerald-200 */
+    #10b981,  /* emerald-500 */
+    #059669,  /* emerald-600 */
+    #047857,  /* emerald-700 */
+    #065f46,  /* emerald-800 */
+    #064e3b   /* emerald-900 */
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: greenGradient 8s ease-in-out infinite;
 }
 
 .projects {
@@ -489,7 +538,7 @@ form {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
 }
 
 .form-group textarea {
@@ -557,7 +606,23 @@ form {
 .github-stats h2 {
   text-align: center;
   margin-bottom: var(--spacing-lg);
-  color: var(--color-text);
+  background: linear-gradient(135deg, 
+    #059669,  /* emerald-600 */
+    #10b981,  /* emerald-500 */
+    #34d399,  /* emerald-400 */
+    #6ee7b7,  /* emerald-300 */
+    #a7f3d0,  /* emerald-200 */
+    #10b981,  /* emerald-500 */
+    #059669,  /* emerald-600 */
+    #047857,  /* emerald-700 */
+    #065f46,  /* emerald-800 */
+    #064e3b   /* emerald-900 */
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: greenGradient 8s ease-in-out infinite;
 }
 
 #profile-stats dl {
@@ -640,25 +705,56 @@ form {
 .hero-text h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
   margin-bottom: 0.5rem;
-  background: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #10b981;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #10b981;
+  animation: typewriter 3s steps(20, end), blinkCursor 0.75s step-end infinite;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkCursor {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #10b981;
+  }
+}
+
+@keyframes greenGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Dark mode hero text */
 @media (prefers-color-scheme: dark) {
   .hero-text h1 {
-    background: linear-gradient(135deg, var(--color-text), var(--color-text-light));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #10b981;
+    border-right-color: #10b981;
+    animation: typewriter 3s steps(20, end), blinkCursor 0.75s step-end infinite;
   }
 }
 
 .hero-text h2 {
   font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  color: var(--color-accent);
+  color: #10b981 !important;
   margin-bottom: 1.5rem;
   font-weight: 400;
 }
@@ -745,7 +841,7 @@ form {
   gap: 2rem;
   margin: 3rem 0;
   padding: 2rem;
-  background: rgba(168, 230, 207, 0.05);
+  background: transparent;
   border-radius: 1rem;
 }
 
@@ -847,10 +943,23 @@ form {
 .page-header h1 {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   margin-bottom: 1rem;
-  background: transparent;
+  background: linear-gradient(135deg, 
+    #059669,  /* emerald-600 */
+    #10b981,  /* emerald-500 */
+    #34d399,  /* emerald-400 */
+    #6ee7b7,  /* emerald-300 */
+    #a7f3d0,  /* emerald-200 */
+    #10b981,  /* emerald-500 */
+    #059669,  /* emerald-600 */
+    #047857,  /* emerald-700 */
+    #065f46,  /* emerald-800 */
+    #064e3b   /* emerald-900 */
+  );
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: greenGradient 8s ease-in-out infinite;
 }
 
 .page-description {
@@ -864,14 +973,27 @@ form {
 /* Dark mode page header */
 @media (prefers-color-scheme: dark) {
   .page-header {
-    background: linear-gradient(135deg, rgba(125, 211, 160, 0.15) 0%, rgba(168, 230, 207, 0.08) 100%);
+    background: transparent;
   }
   
   .page-header h1 {
-    background: linear-gradient(135deg, var(--color-text), var(--color-text-light));
+    background: linear-gradient(135deg, 
+      #10b981,  /* emerald-500 */
+      #34d399,  /* emerald-400 */
+      #6ee7b7,  /* emerald-300 */
+      #a7f3d0,  /* emerald-200 */
+      #d1fae5,  /* emerald-100 */
+      #34d399,  /* emerald-400 */
+      #10b981,  /* emerald-500 */
+      #059669,  /* emerald-600 */
+      #047857,  /* emerald-700 */
+      #065f46   /* emerald-800 */
+    );
+    background-size: 400% 400%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: greenGradient 8s ease-in-out infinite;
   }
   
   .page-description {
@@ -1058,7 +1180,7 @@ form {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(168, 230, 207, 0.2);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
 .form-group textarea {
@@ -1087,7 +1209,7 @@ form {
   .form-group input:focus,
   .form-group textarea:focus {
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(125, 211, 160, 0.2);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
   }
 }
 
@@ -1190,7 +1312,23 @@ form {
 .latest-projects h2 {
   text-align: center;
   margin-bottom: 2rem;
-  color: var(--color-accent);
+  background: linear-gradient(135deg, 
+    #059669,  /* emerald-600 */
+    #10b981,  /* emerald-500 */
+    #34d399,  /* emerald-400 */
+    #6ee7b7,  /* emerald-300 */
+    #a7f3d0,  /* emerald-200 */
+    #10b981,  /* emerald-500 */
+    #059669,  /* emerald-600 */
+    #047857,  /* emerald-700 */
+    #065f46,  /* emerald-800 */
+    #064e3b   /* emerald-900 */
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: greenGradient 8s ease-in-out infinite;
 }
 
 /* GitHub Stats Section */
@@ -1205,7 +1343,23 @@ form {
 .github-stats h2 {
   text-align: center;
   margin-bottom: 2rem;
-  color: var(--color-accent);
+  background: linear-gradient(135deg, 
+    #059669,  /* emerald-600 */
+    #10b981,  /* emerald-500 */
+    #34d399,  /* emerald-400 */
+    #6ee7b7,  /* emerald-300 */
+    #a7f3d0,  /* emerald-200 */
+    #10b981,  /* emerald-500 */
+    #059669,  /* emerald-600 */
+    #047857,  /* emerald-700 */
+    #065f46,  /* emerald-800 */
+    #064e3b   /* emerald-900 */
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: greenGradient 8s ease-in-out infinite;
 }
 
 #profile-stats dl {

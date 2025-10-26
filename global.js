@@ -32,7 +32,7 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
       <div class="project-content">
         <${headingLevel}>${project.title}</${headingLevel}>
         <p>${project.description}</p>
-        <a href="#" class="project-link">View Project →</a>
+        <a href="${project.url || '#'}" class="project-link" ${project.url ? 'target="_blank"' : ''}>View Project →</a>
       </div>
     `;
     
@@ -84,19 +84,16 @@ currentLink?.classList.add('current');
 // Step 4: Dark mode functionality
 const select = document.querySelector('.color-scheme select');
 if (select) {
+  // Load saved theme or default to light
+  const savedTheme = localStorage.getItem('colorScheme') || 'light';
+  document.documentElement.setAttribute('data-color-scheme', savedTheme);
+  select.value = savedTheme;
+
   select.addEventListener('input', function (event) {
     console.log('color scheme changed to', event.target.value);
     document.documentElement.setAttribute('data-color-scheme', event.target.value);
-    localStorage.colorScheme = event.target.value;
+    localStorage.setItem('colorScheme', event.target.value);
   });
-
-  // Force light mode and clear any cached theme
-  localStorage.clear();
-  document.documentElement.setAttribute('data-color-scheme', 'light');
-  select.value = 'light';
-  // Force remove any inline styles that might be overriding
-  document.documentElement.style.removeProperty('color-scheme');
-  document.body.style.removeProperty('background-color');
 }
 
 // Step 5: Better contact form
