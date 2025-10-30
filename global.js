@@ -32,6 +32,7 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
       <div class="project-content">
         <${headingLevel}>${project.title}</${headingLevel}>
         <p>${project.description}</p>
+        <div class="project-year">${project.year}</div>
         <a href="${project.url || '#'}" class="project-link" ${project.url ? 'target="_blank"' : ''}>View Project →</a>
       </div>
     `;

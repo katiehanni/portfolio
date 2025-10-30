@@ -1,6 +1,6 @@
 [
   {
-    "title": "OCR EPIC Confidence Optimization",
+    "title": "OCR Confidence Optimization",
     "year": "2024",
     "image": "/portfolio/images/newplot.png",
     "description": "Optimizing OCR confidence thresholds — balancing automation accuracy and human review cost using Python. Advanced statistical analysis to minimize manual review while maintaining high accuracy standards.",

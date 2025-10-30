@@ -1078,6 +1078,110 @@ form {
   font-weight: 600;
 }
 
+.project-year {
+  font-family: Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif;
+  font-variant-numeric: oldstyle-nums;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* Pie Chart Container */
+.pie-chart-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 3rem 0;
+  padding: 2rem;
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+#projects-pie-plot path {
+  transition: opacity 300ms;
+  cursor: pointer;
+}
+
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 1.5rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  flex: 1;
+  margin: 0;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.swatch {
+  width: 1em;
+  height: 1em;
+  background-color: var(--color);
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.selected {
+  --color: oklch(60% 45% 0) !important;
+}
+
+.selected path {
+  fill: var(--color);
+}
+
+/* Search Bar */
+.searchBar {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin: 2rem auto;
+  display: block;
+  transition: border-color 0.3s ease;
+}
+
+.searchBar:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+@media (max-width: 768px) {
+  .pie-chart-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  #projects-pie-plot {
+    max-width: 15em;
+  }
+  
+  .legend {
+    grid-template-columns: 1fr;
+  }
+}
+
 .project-link {
   color: var(--color-accent);
   text-decoration: none;
