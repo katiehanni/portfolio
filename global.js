@@ -48,7 +48,11 @@ export async function fetchGitHubData(username) {
 // Step 3: Automatic navigation menu
 // Determine the correct path prefix based on current location
 const currentPath = window.location.pathname;
-const isInSubdirectory = currentPath.includes('/projects/') || currentPath.includes('/contact/') || currentPath.includes('/cv/');
+const isInSubdirectory =
+  currentPath.includes('/projects/') ||
+  currentPath.includes('/contact/') ||
+  currentPath.includes('/cv/') ||
+  currentPath.includes('/meta/');
 const pathPrefix = isInSubdirectory ? "../" : "";
 
 const navData = [
@@ -56,6 +60,7 @@ const navData = [
   { url: `${pathPrefix}projects/index.html`, text: "Projects" },
   { url: `${pathPrefix}contact/index.html`, text: "Contact" },
   { url: `${pathPrefix}cv/index.html`, text: "Resume" },
+  { url: `${pathPrefix}meta/index.html`, text: "Code Meta" },
   { url: "https://github.com/kathehann", text: "GitHub", external: true },
   { url: "https://www.linkedin.com/in/katie-hannigan-423134238", text: "LinkedIn", external: true }
 ];

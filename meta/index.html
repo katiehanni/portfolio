@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Meta Analysis - Katie Hannigan</title>
+    <link rel="stylesheet" href="../style.css" />
+    <script type="module" src="../global.js"></script>
+    <script type="module" src="main.js" defer></script>
+  </head>
+  <body>
+    <nav id="nav"></nav>
+
+    <label class="color-scheme">
+      Theme:
+      <select>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="auto">Auto</option>
+      </select>
+    </label>
+
+    <main class="meta-layout">
+      <header class="page-header">
+        <h1>Code Meta Analysis</h1>
+        <p class="page-description">
+          Exploring line-of-code history, commit cadence, and language mix across
+          this portfolio using D3-powered visualizations.
+        </p>
+      </header>
+
+      <section aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Summary Statistics</h2>
+        <div id="stats" class="meta-panel">
+          <p class="meta-placeholder">
+            Loading code statistics from <code>meta/loc.csv</code>…
+          </p>
+        </div>
+      </section>
+
+      <section aria-labelledby="scatter-heading" class="meta-panel">
+        <div class="meta-panel__header">
+          <h2 id="scatter-heading">Commits by Time of Day</h2>
+          <p>
+            Hover or brush to explore when commits landed and how large they
+            were.
+          </p>
+        </div>
+        <div id="chart"></div>
+        <p id="selection-count" aria-live="polite">No commits selected</p>
+        <dl id="language-breakdown" class="stats meta-language"></dl>
+      </section>
+    </main>
+
+    <dl id="commit-tooltip" class="info tooltip" hidden>
+      <dt>Commit</dt>
+      <dd>
+        <a href="" id="commit-link" target="_blank" rel="noopener"> </a>
+      </dd>
+
+      <dt>Date</dt>
+      <dd id="commit-date"></dd>
+
+      <dt>Time</dt>
+      <dd id="commit-time"></dd>
+
+      <dt>Author</dt>
+      <dd id="commit-author"></dd>
+
+      <dt>Lines Edited</dt>
+      <dd id="commit-lines"></dd>
+    </dl>
+  </body>
+</html>
+
