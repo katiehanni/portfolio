@@ -409,9 +409,17 @@ function updateScatterPlot(data, commitsData) {
   };
 
   const svg = d3.select('#chart').select('svg');
-  if (svg.empty()) return;
+  if (svg.empty() || !xScale) return;
 
-  xScale = xScale.domain(d3.extent(commitsData, (d) => d.datetime));
+  // Update xScale domain with new data, preserving the range
+  const timeExtent = d3.extent(commitsData, (d) => d.datetime);
+  if (timeExtent[0] && timeExtent[1] && !timeExtent.some(d => !d || isNaN(d.getTime()))) {
+    xScale.domain(timeExtent).nice();
+  } else if (commitsData.length === 0) {
+    // If no data, remove all circles
+    svg.select('g.dots').selectAll('circle').remove();
+    return;
+  }
 
   const [minLines, maxLines] = d3.extent(commitsData, (d) => d.totalLines);
   const rScale = d3
@@ -421,7 +429,7 @@ function updateScatterPlot(data, commitsData) {
 
   const xAxis = d3.axisBottom(xScale);
 
-  // Clear out the existing x-axis and create a new one
+  // Update the x-axis
   const xAxisGroup = svg.select('g.x-axis');
   xAxisGroup.selectAll('*').remove();
   xAxisGroup.call(xAxis);
@@ -429,10 +437,20 @@ function updateScatterPlot(data, commitsData) {
   const dots = svg.select('g.dots');
 
   const sortedCommits = d3.sort(commitsData, (d) => -d.totalLines);
-  dots
+  
+  // Update circles with enter/update/exit pattern
+  const circles = dots
     .selectAll('circle')
-    .data(sortedCommits, (d) => d.id)
-    .join('circle')
+    .data(sortedCommits, (d) => d.id);
+  
+  // Remove exiting circles
+  circles.exit().remove();
+  
+  // Update existing and add new circles
+  circles
+    .enter()
+    .append('circle')
+    .merge(circles)
     .attr('cx', (d) => xScale(d.datetime))
     .attr('cy', (d) => yScale(d.hourFrac))
     .attr('r', (d) => rScale(d.totalLines))
@@ -466,8 +484,18 @@ function brushed(event, svg) {
 }
 
 function onTimeSliderChange() {
-  commitProgress = parseFloat(document.getElementById('commit-progress').value);
+  const slider = document.getElementById('commit-progress');
+  if (!slider || !timeScale) return;
+  
+  commitProgress = parseFloat(slider.value);
+  if (isNaN(commitProgress)) return;
+  
   commitMaxTime = timeScale.invert(commitProgress);
+  
+  // Validate commitMaxTime
+  if (!commitMaxTime || isNaN(commitMaxTime.getTime())) {
+    commitMaxTime = d3.max(commits, (d) => d.datetime);
+  }
   
   const timeElement = document.getElementById('commit-max-time');
   if (timeElement && commitMaxTime) {
@@ -478,11 +506,25 @@ function onTimeSliderChange() {
     timeElement.setAttribute('datetime', commitMaxTime.toISOString());
   }
 
-  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+  filteredCommits = commits.filter((d) => d.datetime && d.datetime <= commitMaxTime);
+  
+  // Clear any brush selection when slider changes
+  const svg = d3.select('#chart').select('svg');
+  if (!svg.empty()) {
+    // Clear brush selection by dispatching a clear event
+    const brushSelection = svg.select('.brush');
+    if (!brushSelection.empty()) {
+      brushSelection.call(d3.brush().clear);
+    }
+    // Clear selected class from circles
+    svg.selectAll('.dots circle').classed('selected', false);
+  }
   
   updateScatterPlot(codeLines, filteredCommits);
   renderCommitInfo(codeLines, filteredCommits);
   updateFileDisplay(filteredCommits);
+  renderSelectionCount(null);
+  renderLanguageBreakdown(null);
 }
 
 function updateFileDisplay(filteredCommits) {
