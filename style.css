@@ -1571,6 +1571,23 @@ form {
 .meta-panel__header p {
   margin: 0;
   color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+#scatter-plot .meta-panel__header {
+  margin-bottom: var(--spacing-sm);
+}
+
+#scatter-plot #chart {
+  flex-shrink: 0;
+}
+
+#scatter-plot #selection-count {
+  flex-shrink: 0;
+}
+
+#scatter-plot #language-breakdown {
+  flex-shrink: 0;
 }
 
 .meta-placeholder {
@@ -1700,22 +1717,33 @@ dl.info[hidden]:not(:hover, :focus-within) {
 
 #selection-count {
   margin-top: var(--spacing-md);
+  margin-bottom: 0;
   font-weight: 600;
   color: var(--color-text);
+  font-size: 0.95rem;
 }
 
 .meta-language {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.4rem 1.5rem;
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border-light);
 }
 
 .meta-language dt {
-  font-size: 0.85rem;
-  color: var(--color-text-light);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: right;
+  min-width: 4em;
 }
 
 .meta-language dd {
-  font-size: 1rem;
-  color: var(--color-text);
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin: 0;
 }
 
 .selection {
@@ -1769,8 +1797,19 @@ section[aria-labelledby="files-heading"] {
   clear: both;
   position: relative;
   z-index: 1;
-  margin-top: var(--spacing-2xl);
-  padding-top: var(--spacing-2xl);
+  margin-top: var(--spacing-lg);
+  padding-top: 0;
+}
+
+section[aria-labelledby="files-heading"] h2 {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+}
+
+#scatter-plot section[aria-labelledby="files-heading"] {
+  margin-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  flex-shrink: 0;
 }
 
 #files {
@@ -1861,10 +1900,25 @@ section[aria-labelledby="files-heading"] {
 
 #scatter-plot {
   position: sticky;
-  top: 0;
-  height: 50vh;
+  top: var(--spacing-md);
+  height: fit-content;
+  max-height: calc(100vh - var(--spacing-md) * 2);
   align-self: flex-start;
   z-index: 5;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+#scatter-plot .meta-panel {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+#scatter-plot section[aria-labelledby="files-heading"] {
+  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
@@ -1876,6 +1930,9 @@ section[aria-labelledby="files-heading"] {
   #scatter-plot {
     position: relative;
     height: auto;
+    max-height: none;
+    overflow-y: visible;
+    gap: var(--spacing-md);
   }
   
   #scatter-story .step {
@@ -1887,7 +1944,7 @@ section[aria-labelledby="files-heading"] {
   }
   
   section[aria-labelledby="files-heading"] {
-    margin-top: var(--spacing-2xl);
+    margin-top: var(--spacing-lg);
   }
 }
 

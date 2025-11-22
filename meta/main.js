@@ -663,9 +663,22 @@ function updateFileDisplay(filteredCommits) {
       }
 
       filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+      
+      // Clear any brush selection when step changes
+      const svg = d3.select('#chart').select('svg');
+      if (!svg.empty()) {
+        const brushSelection = svg.select('.brush');
+        if (!brushSelection.empty()) {
+          brushSelection.call(d3.brush().clear);
+        }
+        svg.selectAll('.dots circle').classed('selected', false);
+      }
+      
       updateScatterPlot(codeLines, filteredCommits);
       renderCommitInfo(codeLines, filteredCommits);
       updateFileDisplay(filteredCommits);
+      renderSelectionCount(null);
+      renderLanguageBreakdown(null);
     }
   }
 
