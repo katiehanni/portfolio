@@ -38,17 +38,37 @@
         </div>
       </section>
 
-      <section aria-labelledby="scatter-heading" class="meta-panel">
-        <div class="meta-panel__header">
-          <h2 id="scatter-heading">Commits by Time of Day</h2>
-          <p>
-            Hover or brush to explore when commits landed and how large they
-            were.
-          </p>
+      <section aria-labelledby="timeline-heading" class="meta-panel">
+        <div class="slider-container">
+          <label for="commit-progress">
+            Show commits until:
+            <input type="range" id="commit-progress" min="0" max="100" value="100" />
+          </label>
+          <time id="commit-max-time"></time>
         </div>
-        <div id="chart"></div>
-        <p id="selection-count" aria-live="polite">No commits selected</p>
-        <dl id="language-breakdown" class="stats meta-language"></dl>
+      </section>
+
+      <div id="scrolly-1">
+        <div id="scatter-story"></div>
+        <div id="scatter-plot">
+          <section aria-labelledby="scatter-heading" class="meta-panel">
+            <div class="meta-panel__header">
+              <h2 id="scatter-heading">Commits by Time of Day</h2>
+              <p>
+                Hover or brush to explore when commits landed and how large they
+                were.
+              </p>
+            </div>
+            <div id="chart"></div>
+            <p id="selection-count" aria-live="polite">No commits selected</p>
+            <dl id="language-breakdown" class="stats meta-language"></dl>
+          </section>
+        </div>
+      </div>
+
+      <section aria-labelledby="files-heading" class="meta-panel">
+        <h2 id="files-heading">File Sizes</h2>
+        <dl id="files"></dl>
       </section>
     </main>
 
@@ -72,4 +92,8 @@
     </dl>
   </body>
 </html>
+
+
+
+
 
